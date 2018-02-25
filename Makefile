@@ -6,7 +6,7 @@
 #    By: afeuerst <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/24 15:30:25 by afeuerst          #+#    #+#              #
-#    Updated: 2018/02/24 17:00:10 by afeuerst         ###   ########.fr        #
+#    Updated: 2018/02/25 16:21:24 by afeuerst         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,13 +28,13 @@ $(LIBX):
 	make -C ./minilibx_macos/
 
 %.o: %.c
-	clang ./minilibx_macos/libmlx.a -c $^ -o $@ -I ./minilibx_macos/
+	clang -c $^ -o $@ -I ./minilibx_macos/
 
 clean:
-	rm $(OBJ)
+	rm -rf $(OBJ)
 	make -C ./minilibx_macos/ clean
 
 fclean: clean
-	rm $(NAME)
+	rm -rf $(NAME)
 
 re: fclean all
