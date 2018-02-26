@@ -6,7 +6,7 @@
 /*   By: afeuerst <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/24 15:13:53 by afeuerst          #+#    #+#             */
-/*   Updated: 2018/02/26 15:05:18 by afeuerst         ###   ########.fr       */
+/*   Updated: 2018/02/26 16:12:56 by afeuerst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef struct		s_short_minilibx_image
 	int				xposition;
 	int				yposition;
 	void			*img;
-	int				*raw;
+	int				**raw;
 	void			*next; // next image short_minilibx only
 }					t_short_minilibx_image;
 

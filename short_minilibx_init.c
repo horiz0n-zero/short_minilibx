@@ -6,11 +6,28 @@
 /*   By: afeuerst <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/24 15:22:09 by afeuerst          #+#    #+#             */
-/*   Updated: 2018/02/26 15:05:56 by afeuerst         ###   ########.fr       */
+/*   Updated: 2018/02/26 16:12:29 by afeuerst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "short_minilibx.h"
+
+static inline void						short_minilibx_raw(t_short_minilibx_image *const img)
+{
+	int									**array;
+	int									*raw;
+	int									i;
+
+	i = 0;
+	raw = (void*)img->raw;
+	array = malloc(sizeof(int*) * img->height);
+	img->raw = array;
+	while (i++ < img->height)
+	{
+		*array++ = raw;
+		raw += img->width;
+	}
+}
 
 static inline void						short_minilibx_images(t_short_minilibx *const self,
 		int image_count, va_list *const args)
@@ -25,6 +42,7 @@ static inline void						short_minilibx_images(t_short_minilibx *const self,
 		ptr = va_arg(*args, void*);
 		ptr->img = mlx_new_image(self->mlx, ptr->width, ptr->height);
 		ptr->raw = (void*)mlx_get_data_addr(ptr->img, buffy, buffy + 1, buffy + 2);
+		short_minilibx_raw(ptr);
 		if (!last)
 		{
 			last = ptr;
