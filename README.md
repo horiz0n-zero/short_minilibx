@@ -5,7 +5,7 @@ Quick set up for using minilibx in your project.
 Add a struct s_short_minilibx to your own struct and provide desired settings :
 
 t_short_minilibx {<br />
-  void *mlx; // don't care<br />
+      void *mlx; // don't care<br />
   void *win; // don't care<br />
   int  width; // width in pixel<br />
   int  height; // height in pixel<br />
