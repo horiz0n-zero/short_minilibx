@@ -6,7 +6,7 @@
 /*   By: afeuerst <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/24 16:29:20 by afeuerst          #+#    #+#             */
-/*   Updated: 2018/02/26 15:00:15 by afeuerst         ###   ########.fr       */
+/*   Updated: 2018/02/26 15:09:48 by afeuerst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,17 @@ static void					func_init(t_used *const used)
 	fill_target(used->icone.raw, used->icone.width * used->icone.height, PIXEL(0, 23, 0));
 }
 
+static int				__dead2	func_keyhandle(int keycode, void *param)
+{
+	short_minilibx_deinit();
+	exit(0);
+}
+
 static struct s_used		g_used =
 {
 	{
 		NULL, NULL, 1920, 1080, NULL,
-		func_init, NULL, NULL, NULL, NULL,
+		func_init, func_keyhandle, NULL, NULL, NULL,
 		NULL
 	},
 	{

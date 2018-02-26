@@ -6,12 +6,11 @@
 /*   By: afeuerst <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/24 15:22:09 by afeuerst          #+#    #+#             */
-/*   Updated: 2018/02/26 14:45:08 by afeuerst         ###   ########.fr       */
+/*   Updated: 2018/02/26 15:05:56 by afeuerst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "short_minilibx.h"
-#include <stdio.h>
 
 static inline void						short_minilibx_images(t_short_minilibx *const self,
 		int image_count, va_list *const args)
@@ -39,7 +38,6 @@ static inline void						short_minilibx_images(t_short_minilibx *const self,
 	}
 }
 
-#include <stdio.h>
 static inline void						short_minilibx_images_add(t_short_minilibx *const self)
 {
 	t_short_minilibx_image				*ptr;
@@ -48,7 +46,6 @@ static inline void						short_minilibx_images_add(t_short_minilibx *const self)
 	while (ptr)
 	{
 		mlx_put_image_to_window(self->mlx, self->win, ptr->img, ptr->xposition, ptr->yposition);
-		printf("add image %p, %d %d (%d, %d)\n", ptr->img, ptr->width, ptr->height, ptr->xposition, ptr->yposition);
 		ptr = ptr->next;
 	}
 }

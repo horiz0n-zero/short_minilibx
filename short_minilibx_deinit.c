@@ -6,7 +6,7 @@
 /*   By: afeuerst <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/24 15:26:35 by afeuerst          #+#    #+#             */
-/*   Updated: 2018/02/25 16:42:02 by afeuerst         ###   ########.fr       */
+/*   Updated: 2018/02/26 15:08:52 by afeuerst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,16 @@
 void							short_minilibx_deinit(void)
 {
 	t_short_minilibx *const		ptr = short_minilibx_data(NULL);
+	t_short_minilibx_image		*img;
 
-	mlx_destroy_window(ptr->mlx, ptr->win);
+	if (ptr)
+	{
+		img = ptr->image;
+		while (img)
+		{
+			mlx_destroy_image(ptr->mlx, img->img);
+			img = img->next;
+		}
+		mlx_destroy_window(ptr->mlx, ptr->win);
+	}
 }
