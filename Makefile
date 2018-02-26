@@ -6,7 +6,7 @@
 #    By: afeuerst <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/24 15:30:25 by afeuerst          #+#    #+#              #
-#    Updated: 2018/02/25 16:21:24 by afeuerst         ###   ########.fr        #
+#    Updated: 2018/02/26 12:46:57 by afeuerst         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,9 +32,9 @@ $(LIBX):
 
 clean:
 	rm -rf $(OBJ)
-	make -C ./minilibx_macos/ clean
 
 fclean: clean
+	make -C ./minilibx_macos/ clean
 	rm -rf $(NAME)
 
 re: fclean all
