@@ -6,7 +6,7 @@
 /*   By: afeuerst <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/24 15:13:53 by afeuerst          #+#    #+#             */
-/*   Updated: 2018/03/02 12:35:16 by afeuerst         ###   ########.fr       */
+/*   Updated: 2018/03/02 13:11:06 by afeuerst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ typedef struct		s_short_minilibx
 	void			*win;
 	int				width;
 	int				height;
-	void			*image; // first image for short_minilibx only
-	void			(*init)(); // self
-	int				(*key)(); // int keycode, void *param
-	int				(*mouse)(); // int button, x, y, void *param
-	int				(*expose)(); // void *param
-	int				(*loop)(); // void *param
+	void			*image;
+	void			(*init)();
+	int				(*key)();
+	int				(*mouse)();
+	int				(*expose)();
+	int				(*loop)();
 	char			*error;
 }					t_short_minilibx;
 
@@ -43,11 +43,12 @@ typedef struct		s_short_minilibx_image
 	int				yposition;
 	void			*img;
 	int				**raw;
-	void			*next; // next image short_minilibx only
-	char			*file; // is a xpm file ?
+	void			*next;
+	char			*file;
 }					t_short_minilibx_image;
 
-void				short_minilibx_init(void *const self, char *const title, int image_count, ...);
+void				short_minilibx_init(void *const self, char *const title,
+		int image_count, ...);
 void				short_minilibx_deinit(void);
 
 void				*short_minilibx_data(void *const self);

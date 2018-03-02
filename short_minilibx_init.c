@@ -6,13 +6,14 @@
 /*   By: afeuerst <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/24 15:22:09 by afeuerst          #+#    #+#             */
-/*   Updated: 2018/03/01 15:05:45 by afeuerst         ###   ########.fr       */
+/*   Updated: 2018/03/02 13:15:10 by afeuerst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "short_minilibx.h"
 
-static inline void						short_minilibx_raw(t_short_minilibx_image *const img)
+static inline void						short_minilibx_raw(
+		t_short_minilibx_image *const img)
 {
 	int									**array;
 	int									*raw;
@@ -29,8 +30,18 @@ static inline void						short_minilibx_raw(t_short_minilibx_image *const img)
 	}
 }
 
-static inline void						short_minilibx_images(t_short_minilibx *const self,
-		int image_count, va_list *const args)
+static inline void						images_ptr_fill(
+		t_short_minilibx_image *const ptr, t_short_minilibx *const self)
+{
+	if (ptr->file)
+		ptr->img = mlx_xpm_file_to_image(self->mlx, ptr->file,
+				&ptr->width, &ptr->height);
+	else
+		ptr->img = mlx_new_image(self->mlx, ptr->width, ptr->height);
+}
+
+static inline void						short_minilibx_images(
+		t_short_minilibx *const self, int image_count, va_list *const args)
 {
 	t_short_minilibx_image				*ptr;
 	t_short_minilibx_image				*last;
@@ -40,11 +51,9 @@ static inline void						short_minilibx_images(t_short_minilibx *const self,
 	while (image_count--)
 	{
 		ptr = va_arg(*args, void*);
-		if (ptr->file)
-			ptr->img = mlx_xpm_file_to_image(self->mlx, ptr->file, &ptr->width, &ptr->height);
-		else
-			ptr->img = mlx_new_image(self->mlx, ptr->width, ptr->height);
-		ptr->raw = (void*)mlx_get_data_addr(ptr->img, buffy, buffy + 1, buffy + 2);
+		images_ptr_fill(ptr, self);
+		ptr->raw = (void*)mlx_get_data_addr(ptr->img,
+				buffy, buffy + 1, buffy + 2);
 		short_minilibx_raw(ptr);
 		if (!last)
 		{
@@ -59,14 +68,16 @@ static inline void						short_minilibx_images(t_short_minilibx *const self,
 	}
 }
 
-static inline void						short_minilibx_images_add(t_short_minilibx *const self)
+static inline void						short_minilibx_images_add(
+		t_short_minilibx *const self)
 {
 	t_short_minilibx_image				*ptr;
 
 	ptr = self->image;
 	while (ptr)
 	{
-		mlx_put_image_to_window(self->mlx, self->win, ptr->img, ptr->xposition, ptr->yposition);
+		mlx_put_image_to_window(self->mlx, self->win, ptr->img,
+				ptr->xposition, ptr->yposition);
 		ptr = ptr->next;
 	}
 }
