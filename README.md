@@ -39,6 +39,9 @@ t_short_minilibx_image
       void        *img;                   // don't care
       int         **raw;                  // acces each pixel by image.raw[y][x] = color
       void        *next;                  // don't care
+      char        *file;                  // see below
+      /* for xpm images */
+      just add a valid xpm file path (!) to file variable. ignore everything other, just load the image. 
 }
 ```
 
