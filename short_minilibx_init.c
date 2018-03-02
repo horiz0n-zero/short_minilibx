@@ -6,7 +6,7 @@
 /*   By: afeuerst <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/24 15:22:09 by afeuerst          #+#    #+#             */
-/*   Updated: 2018/02/26 16:12:29 by afeuerst         ###   ########.fr       */
+/*   Updated: 2018/03/01 15:05:45 by afeuerst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,10 @@ static inline void						short_minilibx_images(t_short_minilibx *const self,
 	while (image_count--)
 	{
 		ptr = va_arg(*args, void*);
-		ptr->img = mlx_new_image(self->mlx, ptr->width, ptr->height);
+		if (ptr->file)
+			ptr->img = mlx_xpm_file_to_image(self->mlx, ptr->file, &ptr->width, &ptr->height);
+		else
+			ptr->img = mlx_new_image(self->mlx, ptr->width, ptr->height);
 		ptr->raw = (void*)mlx_get_data_addr(ptr->img, buffy, buffy + 1, buffy + 2);
 		short_minilibx_raw(ptr);
 		if (!last)

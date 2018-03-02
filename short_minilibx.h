@@ -6,7 +6,7 @@
 /*   By: afeuerst <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/24 15:13:53 by afeuerst          #+#    #+#             */
-/*   Updated: 2018/02/26 16:12:56 by afeuerst         ###   ########.fr       */
+/*   Updated: 2018/03/01 14:20:26 by afeuerst         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct		s_short_minilibx_image
 	void			*img;
 	int				**raw;
 	void			*next; // next image short_minilibx only
+	char			*file; // is a xpm file ?
 }					t_short_minilibx_image;
 
 void				short_minilibx_init(void *const self, char *const title, int image_count, ...);
